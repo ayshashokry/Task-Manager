@@ -4,7 +4,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 /* Redux Connections */
-import rootReducer from "./redux/reducers/rootReducer";
+import RootReducer from "./redux/reducers/RootReducer";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
@@ -18,14 +18,14 @@ import { saveState } from "./redux/LocalStorage";
 const persistedState = loadState();
 const middleware = [thunk];
 const store = createStore(
-  rootReducer,
+  RootReducer,
   persistedState,
   composeWithDevTools(applyMiddleware(promiseMiddleware, ...middleware))
 );
 
 store.subscribe(() => {
   saveState({
-    List: store.getState().List
+    lists: store.getState().lists,
   });
 });
 ReactDOM.render(

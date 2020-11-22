@@ -1,19 +1,29 @@
-const intialState = [
-  {
-    title: "To-Do",
-    id: 0,
-    cards: [
-      { id: 0, text: "Create a new website" },
-      { id: 1, text: "style task manager" },
-      { id: 2, text: "Buy laptop" }
-    ]
-  }
-];
+import { ADD_LIST, DRAG_HAPPEND } from "./rootActions";
 
+export const addList = title => {
+  return {
+    type: ADD_LIST,
+    payload: title
+  };
+};
 
-const ListReducer=(state=intialState,action)=>{
-    switch(action.type){
-        default:
-            return state
+export const sort = (
+  droppableIdStart,
+  droppableIdEnd,
+  droppableIndexStart,
+  droppableIndexEnd,
+  draggableId,
+  type
+) => {
+  return {
+    type: DRAG_HAPPEND,
+    payload: {
+      droppableIdStart,
+      droppableIdEnd,
+      droppableIndexStart,
+      droppableIndexEnd,
+      draggableId,
+      type
     }
-}
+  };
+};
